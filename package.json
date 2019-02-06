@@ -1,0 +1,12 @@
+{
+  "name": "aws-nodejs",
+  "version": "0.0.1",
+  "description": "Starter kit for aws tasks",
+  "scripts": {},
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "args": "^5.0.0",
+    "aws-sdk": "^2.314.0"
+  }
+}
