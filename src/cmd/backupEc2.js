@@ -10,20 +10,11 @@ chalk = require('chalk'),
 { createSnapshot } = require('../ec2/snapshot/create.js'),
 
 // store
-initialState =
-{
-  volumeIds: []
-},
+initialState = {},
 rootReducer = function(state = initialState, action)
 {
   state = Object.assign({}, state, { action: action})
-  console.log(chalk.yellow(' - state action:',state.action.type))
-
-  switch (action.type)
-  {
-    default:
-    return state
-  }
+  return state
 },
 store = createStore(rootReducer, applyMiddleware(thunk)),
 
