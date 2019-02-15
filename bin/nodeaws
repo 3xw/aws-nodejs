@@ -1,0 +1,7 @@
+#!/usr/bin/env node
+const
+  yargs = require('yargs')
+
+yargs.command(require('../src/cmd/backupEc2.js'))
+  .help()
+  .argv

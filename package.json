@@ -1,12 +1,14 @@
 {
   "name": "aws-nodejs",
   "version": "0.0.1",
+  "bin": {
+    "nodeaws": "bin/nodeaws"
+  },
   "description": "Starter kit for aws tasks",
-  "scripts": {},
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "args": "^5.0.0",
-    "aws-sdk": "^2.314.0"
+    "aws-sdk": "^2.314.0",
+    "yargs": "^13.2.0"
   }
 }
