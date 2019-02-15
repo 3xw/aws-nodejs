@@ -14,7 +14,13 @@ initialState = {},
 rootReducer = function(state = initialState, action)
 {
   state = Object.assign({}, state, { action: action})
-  return state
+  console.log(chalk.yellow(' - state action:',state.action.type))
+
+  switch (action.type)
+  {
+    default:
+    return state
+  }
 },
 store = createStore(rootReducer, applyMiddleware(thunk)),
 
