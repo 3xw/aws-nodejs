@@ -30,9 +30,6 @@ store = createStore(rootReducer, applyMiddleware(thunk)),
 // boostrap
 main = function (argv)
 {
-  // do something with argv.
-  //console.log(argv.volumeName)
-  store.dispatch(describeVolumes())
   let unsubscribe = store.subscribe(() =>
   {
     switch(store.getState().action.type)
@@ -46,6 +43,10 @@ main = function (argv)
         return store
     }
   })
+
+  // init
+  store.dispatch(describeVolumes())
+
 }
 
 
