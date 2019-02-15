@@ -12,5 +12,6 @@ exports.builder = {
 exports.handler = function (argv)
 {
   // do something with argv.
-  console.log(argv.volumeName);
+  console.log(argv.volumeName)
+  require('../ec2/snapshot/deleteOlderThan.js')
 }

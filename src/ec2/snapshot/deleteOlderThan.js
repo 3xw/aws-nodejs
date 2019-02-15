@@ -1,6 +1,7 @@
-const
-  AWS = require('aws-sdk'),
-  ec2 = new AWS.EC2({apiVersion: '2016-11-15'})
+const ec2 = require('../EC2.js')
 
 // ec2.describeSnapshots
-console.log('yo');
+ec2.describeSnapshots({OwnerIds: ['self']}, function(err, data) {
+  if(err) console.log(err, err.stack) // an error occurred
+  else console.log(data) // successful response
+})
