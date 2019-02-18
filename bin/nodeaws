@@ -2,6 +2,6 @@
 const
   yargs = require('yargs')
 
-yargs.command(require('../src/cmd/backupEc2.js'))
+yargs.command(require('../src/cmd/backupEc2Volumes.js'))
   .help()
   .argv
