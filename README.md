@@ -1,12 +1,13 @@
-# aws-nodejs
+# ads-nodejs
 Starter kit for aws tasks
 
 ## Install
 
-  	$ git clone git@github.com:3xw/aws-nodejs.git
-  	$ cd aws-nodejs
-  	$ npm install
+	npm install aws-nodejs -g
 
-Then your main.js file in config folder
 
-## Shells
+## use
+
+  nodeaws backupEc2Volumes --help
+
+  nodeaws backupEc2Volumes --da 1 --du weeks
