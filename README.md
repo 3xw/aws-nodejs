@@ -1,18 +1,39 @@
 # aws-nodejs
 Starter kit for aws complex tasks
 
+This packages is build on top of
+
+- aws-sdk
+- redux
+- yargs
+
+It offers you a solid start point to create bin taks using the power of js, args/command managemnt wrap by popuplar yargs lib and the [flux](https://medium.com/hacking-and-gonzo/flux-vs-mvc-design-patterns-57b28c0f71b7) architecture:
+
 ## Install
+### via git
+	
+	git clone https://github.com/3xw/aws-nodejs.git
+
+### via npm
 
 	npm install aws-nodejs -g
 	
 ## configure
-be sure to have a .aws file in your user folder
+
+Be sure to have a .aws folder in your user folder [Configuration and Credential Files](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html).
+
+Then create the file config/main.js with following.
+
+	module.exports = {
+	  ownerId: 'xxxx-your-id',
+	  region: 'eu-central-1' // your own
+	}
 
 
 ## use
 $ nodeaws help:
 
-	$ nodeaws help
+	$ bin/nodeaws help
 	nodeaws [command]
 
 	Commands:
@@ -25,7 +46,7 @@ $ nodeaws help:
   		
 $ nodeaws backupEc2Volumes:
 	
-	$ nodeaws backupEc2Volumes
+	$ bin/nodeaws backupEc2Volumes
 	
 	creates fresh snapshots an deletes old ones
 	
@@ -38,7 +59,7 @@ $ nodeaws backupEc2Volumes:
 
 $ nodeaws backupRdsCluster
 
-	$ nodeaws backupRdsCluster
+	$ bin/nodeaws backupRdsCluster
 	
 	creates fresh snapshot of a db cluster an deletes old ones
 	
@@ -58,7 +79,7 @@ $ crontab -e:
 	30 * * * * /data01/scripts/aws-nodejs/bin/nodeaws backupRdsCluster -n database03-cluster -a 24 -u hours > /data01/logs/aws-nodejs__backupRdsCluster.log 2>&1
 	40 0 * * * /data01/scripts/aws-nodejs/bin/nodeaws backupEc2Volumes -a 1 -u weeks > /data01/logs/aws-nodejs__backupEc2Volumes.log 2>&1
 	
-## create you own
+## create your own
 Go to files:
 	
 	bin/awsnode
