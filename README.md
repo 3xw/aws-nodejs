@@ -1,4 +1,4 @@
-# ads-nodejs
+# aws-nodejs
 Starter kit for aws tasks
 
 ## Install
