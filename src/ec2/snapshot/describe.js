@@ -1,14 +1,14 @@
 const
 ec2 = require('../EC2.js')
-describeSnapshots = function()
+describeSnapshots = function(params)
 {
   return (dispatch, getState) => {
 
-    ec2.describeSnapshots({OwnerIds:['self']}, function(err, data)
+    ec2.describeSnapshots(params, function(err, data)
     {
       if(err) throw new Error(err)
       dispatch({
-        type: 'DESCRIBE_SNAPSHOTS_ENDS',
+        type: 'EC2_SNAPSHOT_DESCRIBE_ENDS',
         data
       })
     })

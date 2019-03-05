@@ -8,7 +8,7 @@ deleteSnapshot = function(params)
     {
       if(err) throw new Error(err)
       dispatch({
-        type: 'DELETE_SNAPSHOT_ENDS',
+        type: 'EC2_SNAPSHOT_DELETE_ENDS',
         data
       })
     })

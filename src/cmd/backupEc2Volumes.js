@@ -30,10 +30,10 @@ rootReducer = function(state = initialState, action)
     case 'SET_ARGV':
     return Object.assign({}, state, { delayAmount: action.argv.delayAmount, delayUnits: action.argv.delayUnits})
 
-    case 'DESCRIBE_VOLUMES_ENDS':
+    case 'EC2_VOLUMES_DESCRIBE_ENDS':
     return Object.assign({}, state, { volumes: action.data.Volumes})
 
-    case 'DESCRIBE_SNAPSHOTS_ENDS':
+    case 'EC2_SNAPSHOT_DESCRIBE_ENDS':
     let snapshotsToDelete = []
     for(let s in action.data.Snapshots)
     {
@@ -46,20 +46,22 @@ rootReducer = function(state = initialState, action)
     return state
   }
 },
-store = createStore(rootReducer, applyMiddleware(thunk)),
 
 // boostrap
 main = function (argv)
 {
+  // kick it!
+  store = createStore(rootReducer, applyMiddleware(thunk))
+
   let unsubscribe = store.subscribe(() =>
   {
     switch(store.getState().action.type)
     {
-      case 'DESCRIBE_VOLUMES_ENDS':
-      store.dispatch(describeSnapshots())
+      case 'EC2_VOLUMES_DESCRIBE_ENDS':
+      store.dispatch(describeSnapshots({OwnerIds:['self']}))
       return store
 
-      case 'DESCRIBE_SNAPSHOTS_ENDS':
+      case 'EC2_SNAPSHOT_DESCRIBE_ENDS':
       for(let v in store.getState().volumes) store.dispatch(createSnapshot({Description: "Automated snap",VolumeId: store.getState().volumes[v].VolumeId}))
       for(let s in store.getState().snapshotsToDelete) store.dispatch(deleteSnapshot({SnapshotId: store.getState().snapshotsToDelete[s]}))
       return store
@@ -69,7 +71,7 @@ main = function (argv)
 
   // init
   store.dispatch({type: 'SET_ARGV',argv})
-  store.dispatch(describeVolumes())
+  store.dispatch(describeVolumes({}))
 
 }
 
@@ -81,12 +83,12 @@ exports.describe = 'creates fresh snapshots an deletes old ones'
 
 exports.builder = (yargs) => {
   yargs
-    .alias('du', 'delayUnits')
-    .describe('du', 'Delay units to use: seconds| minutes | hours | weeks | months | years')
-    .demandOption(['du'])
-    .alias('da', 'delayAmount')
-    .describe('da', 'Delay amount 1, 2 etc')
-    .demandOption(['da'])
+    .alias('u', 'delayUnits')
+    .describe('u', 'Delay units to use: seconds| minutes | hours | days | weeks | months | years')
+    .demandOption(['u'])
+    .alias('a', 'delayAmount')
+    .describe('a', 'Delay amount 1, 2 etc')
+    .demandOption(['a'])
 }
 
 exports.handler = main

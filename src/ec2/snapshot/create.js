@@ -8,7 +8,7 @@ createSnapshot = function(params)
     {
       if(err) throw new Error(err)
       dispatch({
-        type: 'CREATE_SNAPSHOT_ENDS',
+        type: 'EC2_SNAPSHOT_CREATE_ENDS',
         data
       })
     })

@@ -1,14 +1,14 @@
 const
 ec2 = require('../EC2.js'),
-describeVolumes = function()
+describeVolumes = function(params)
 {
   return (dispatch, getState) => {
 
-    ec2.describeVolumes({}, function(err, data)
+    ec2.describeVolumes(params, function(err, data)
     {
       if(err) throw new Error(err)
       dispatch({
-        type: 'DESCRIBE_VOLUMES_ENDS',
+        type: 'EC2_VOLUMES_DESCRIBE_ENDS',
         data
       })
     })
