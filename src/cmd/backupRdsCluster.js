@@ -76,7 +76,7 @@ main = function (argv)
 
 
 // exports
-exports.command = 'backupRdsCuster'
+exports.command = 'backupRdsCluster'
 
 exports.describe = 'creates fresh snapshot of a db cluster an deletes old ones'
 
