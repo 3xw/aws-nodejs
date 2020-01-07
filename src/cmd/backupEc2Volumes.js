@@ -58,11 +58,16 @@ main = function (argv)
     switch(store.getState().action.type)
     {
       case 'EC2_VOLUMES_DESCRIBE_ENDS':
-      store.dispatch(describeSnapshots({OwnerIds:['self']}))
+      store.dispatch(describeSnapshots({
+        OwnerIds:['self'],
+        Filters: [
+          {Name: 'description', Values:['Automated snap']}
+        ]
+      }))
       return store
 
       case 'EC2_SNAPSHOT_DESCRIBE_ENDS':
-      for(let v in store.getState().volumes) store.dispatch(createSnapshot({Description: "Automated snap",VolumeId: store.getState().volumes[v].VolumeId}))
+      for(let v in store.getState().volumes) store.dispatch(createSnapshot({Description: 'Automated snap',VolumeId: store.getState().volumes[v].VolumeId}))
       for(let s in store.getState().snapshotsToDelete) store.dispatch(deleteSnapshot({SnapshotId: store.getState().snapshotsToDelete[s]}))
       return store
 
