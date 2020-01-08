@@ -19,5 +19,21 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/3xw/aws-nodejs"
-  }
+  },
+  "keywords": [
+    "aws",
+    "backup",
+    "flux",
+    "shell",
+    "crontab",
+    "cluster",
+    "rds",
+    "ec2",
+    "snapshot",
+    "elasticsearch",
+    "redis",
+    "aws-sdk",
+    "redux",
+    "yargs"
+  ]
 }
