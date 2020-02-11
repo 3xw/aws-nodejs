@@ -1,6 +1,6 @@
 const
   AWS = require('aws-sdk'),
-  config = require('../config/main.js')
+  config = require('../config/main.js').aws.config
 
 AWS.config.update(config)
 
