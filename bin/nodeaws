@@ -6,5 +6,6 @@ yargs
   .command(require('../src/cmd/backupEc2Volumes.js'))
   .command(require('../src/cmd/backupRdsCluster.js'))
   .command(require('../src/cmd/backupEsDomain.js'))
+  .command(require('../src/cmd/backupRdsSnapshotToS3.js'))
   .help()
   .argv
